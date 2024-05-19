@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:calmly/src/config/app_state.dart';
 import 'package:calmly/src/constants/constants.dart';
@@ -18,7 +18,7 @@ class SystemTheme {
   }
 
   static isDark(_appState) {
-    bool isDark;
+    late bool isDark;
     ThemeSetting themeSetting = _appState.themeSetting;
     if (themeSetting == ThemeSetting.system) {
       isDark = SystemTheme.check(_appState) == ThemeSetting.dark;

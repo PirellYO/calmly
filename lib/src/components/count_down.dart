@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class CountDown extends StatefulWidget {
   const CountDown({
-    Key key,
-    this.countDownTime,
+    Key? key,
+    required this.countDownTime,
   }) : super(key: key);
   final int countDownTime;
   @override
@@ -13,8 +13,8 @@ class CountDown extends StatefulWidget {
 }
 
 class _CountDownState extends State<CountDown> {
-  Timer _timer;
-  int _time;
+  late Timer _timer;
+  late int _time;
   void startTimer() {
     _time = widget.countDownTime;
     var _interval = const Duration(seconds: 1);

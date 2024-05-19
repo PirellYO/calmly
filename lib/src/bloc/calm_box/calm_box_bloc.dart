@@ -3,7 +3,7 @@ import 'package:calmly/src/bloc/calm_box/calm_box_event.dart';
 import 'package:calmly/src/constants/constants.dart';
 
 class CalmBoxBloc {
-  CalmBox _calmBox;
+  late CalmBox _calmBox;
 
   StreamController<CalmBox> _expandStreamController =
       StreamController<CalmBox>.broadcast();

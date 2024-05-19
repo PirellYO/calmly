@@ -1,2 +1,2 @@
-double width;
-double height;
+late double width;
+late double height;

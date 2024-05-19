@@ -4,9 +4,9 @@ class GradientBackground extends StatelessWidget {
   final bool isCircle;
   final List<Color> colors;
   const GradientBackground({
-    Key key,
+    Key? key,
     this.isCircle = false,
-    this.colors,
+    required this.colors,
   }) : super(key: key);
 
   @override

@@ -28,21 +28,21 @@ class ModernCalmBox extends StatefulWidget {
 
 class _ModernCalmBoxState extends State<ModernCalmBox>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _opacityTween;
-  Animation<double> _sigmaXTween;
-  Animation<double> _sigmaYTween;
+  late AnimationController _animationController;
+  late Animation<double> _opacityTween;
+  late Animation<double> _sigmaXTween;
+  late Animation<double> _sigmaYTween;
   // bool isExpanded = false;
-  StreamSubscription _breatheCounterSubscription;
-  StreamSubscription _calmBoxSubscription;
-  CalmBoxBloc _calmBoxBloc;
-  BreatheBloc _breatheBloc;
-  BreatheCounterBloc _breatheCounterBloc;
-  int lastBreatheCount;
-  CalmBox lastCalmBoxEvent;
+  late StreamSubscription _breatheCounterSubscription;
+  late StreamSubscription _calmBoxSubscription;
+  late CalmBoxBloc _calmBoxBloc;
+  late BreatheBloc _breatheBloc;
+  late BreatheCounterBloc _breatheCounterBloc;
+  late int lastBreatheCount;
+  late CalmBox lastCalmBoxEvent;
   bool hasStarted = false;
-  AppState _appState;
-  bool isDark;
+  late AppState _appState;
+  late bool isDark;
 
   @override
   void initState() {
@@ -101,7 +101,7 @@ class _ModernCalmBoxState extends State<ModernCalmBox>
               initialData: CalmBox.shrink,
               stream: _calmBoxBloc.outCalmBox,
               builder: (BuildContext context, AsyncSnapshot<CalmBox> snapshot) {
-                CalmBox calmBox = snapshot.data;
+                CalmBox? calmBox = snapshot.data;
                 if (calmBox == CalmBox.stop) {
                   _animationController.duration =
                       const Duration(milliseconds: 250);
@@ -109,7 +109,7 @@ class _ModernCalmBoxState extends State<ModernCalmBox>
                 }
                 return GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap: () => handleTap(calmBox),
+                  onTap: () => handleTap(calmBox!),
                   child: Container(
                     alignment: Alignment.center,
                     width: width,
@@ -190,7 +190,7 @@ class _ModernCalmBoxState extends State<ModernCalmBox>
   }
 
   vibrate() async {
-    if (await Vibration.hasVibrator()) {
+    if (await Vibration.hasVibrator() ?? false) {
       Vibration.vibrate(duration: 70);
     }
   }

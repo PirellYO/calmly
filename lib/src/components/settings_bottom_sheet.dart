@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class SettingsBottomSheet extends StatefulWidget {
   const SettingsBottomSheet({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -17,9 +17,9 @@ class SettingsBottomSheet extends StatefulWidget {
 }
 
 class _SettingsBottomSheetState extends State<SettingsBottomSheet> {
-  AppState _appState;
-  ThemeSetting _theme;
-  bool isDark;
+  late AppState _appState;
+  late ThemeSetting _theme;
+  late bool isDark;
 
   @override
   void didChangeDependencies() {
@@ -93,9 +93,9 @@ class _SettingsBottomSheetState extends State<SettingsBottomSheet> {
                                       ),
                                     ),
                                     RadioListTile<ThemeSetting>(
-                                      onChanged: (ThemeSetting theme) {
+                                      onChanged: (ThemeSetting? theme) {
                                         setState(() {
-                                          _theme = theme;
+                                          _theme = theme!;
                                           _appState
                                               .updateTheme(ThemeSetting.system);
                                         });
@@ -105,11 +105,11 @@ class _SettingsBottomSheetState extends State<SettingsBottomSheet> {
                                       title: Text('System Default'),
                                     ),
                                     RadioListTile<ThemeSetting>(
-                                      onChanged: (ThemeSetting theme) {
+                                      onChanged: (ThemeSetting? theme) {
                                         setState(() {
                                           _appState
                                               .updateTheme(ThemeSetting.dark);
-                                          _theme = theme;
+                                          _theme = theme!;
                                         });
                                       },
                                       value: ThemeSetting.dark,
@@ -117,9 +117,9 @@ class _SettingsBottomSheetState extends State<SettingsBottomSheet> {
                                       title: Text('Dark'),
                                     ),
                                     RadioListTile<ThemeSetting>(
-                                      onChanged: (ThemeSetting theme) {
+                                      onChanged: (ThemeSetting? theme) {
                                         setState(() {
-                                          _theme = theme;
+                                          _theme = theme!;
                                           _appState
                                               .updateTheme(ThemeSetting.light);
                                         });

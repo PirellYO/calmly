@@ -19,10 +19,10 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  BreatheBloc _breatheBloc;
-  BreatheCounterBloc _breatheCounterBloc;
-  bool isDark;
-  CountDown countDown;
+  late BreatheBloc _breatheBloc;
+  late BreatheCounterBloc _breatheCounterBloc;
+  late bool isDark;
+  late CountDown countDown;
   bool isCancelled = false;
 
   @override
@@ -33,7 +33,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _breatheBloc = Provider.of<BreatheBloc>(context);
+    _breatheBloc = Provider.of(context);
     _breatheCounterBloc = Provider.of<BreatheCounterBloc>(context);
     AppState _appState = Provider.of<AppState>(context);
     isDark = SystemTheme.isDark(_appState);
@@ -105,13 +105,13 @@ class _HomeWidgetState extends State<HomeWidget> {
               stream: _breatheBloc.outBreathe,
               initialData: Breathe.idle,
               builder: (BuildContext context, AsyncSnapshot<Breathe> snapshot) {
-                Breathe breathe = snapshot.data;
+                Breathe? breathe = snapshot.data;
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      mapBreathingInfo(breathe),
+                      mapBreathingInfo(breathe!),
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -148,7 +148,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   CountDown mapCountDown(Breathe breathe) {
-    CountDown countDown;
+    late CountDown countDown;
     if (breathe == Breathe.inhale) {
       countDown = CountDown(countDownTime: 4, key: UniqueKey());
     } else if (breathe == Breathe.holdBreathe) {
@@ -163,7 +163,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 }
 
 String mapBreathingInfo(Breathe breathe) {
-  String breatheInfo;
+  late String breatheInfo;
   if (breathe == Breathe.inhale) {
     breatheInfo = 'Inhale\nfrom your\nnose';
   } else if (breathe == Breathe.holdBreathe) {

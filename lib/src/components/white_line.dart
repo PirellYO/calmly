@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class DividerLine extends StatelessWidget {
   const DividerLine({
-    Key key,
-    @required this.height,
-    @required this.width,
-    this.isDark,
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.isDark,
   }) : super(key: key);
 
   final double height;

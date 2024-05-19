@@ -4,7 +4,7 @@ import 'package:calmly/src/bloc/breathe/breathe_event.dart';
 import 'package:calmly/src/constants/constants.dart';
 
 class BreatheBloc {
-  Breathe _breathe;
+  late Breathe _breathe;
 
   StreamController<Breathe> _breatheController =
       StreamController<Breathe>.broadcast();

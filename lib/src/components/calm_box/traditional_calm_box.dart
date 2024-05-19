@@ -28,18 +28,18 @@ class TraditionalCalmBox extends StatefulWidget {
 
 class _TraditionalCalmBoxState extends State<TraditionalCalmBox>
     with SingleTickerProviderStateMixin {
-  StreamSubscription _breatheCounterSubscription;
-  StreamSubscription _calmBoxSubscription;
-  CalmBoxBloc _calmBoxBloc;
-  AnimationController _animationController;
+  late StreamSubscription _breatheCounterSubscription;
+  late StreamSubscription _calmBoxSubscription;
+  late CalmBoxBloc _calmBoxBloc;
+  late AnimationController _animationController;
   double radius = 0.55;
-  BreatheBloc _breatheBloc;
-  BreatheCounterBloc _breatheCounterBloc;
-  int lastBreatheCount;
+  late BreatheBloc _breatheBloc;
+  late BreatheCounterBloc _breatheCounterBloc;
+  late int lastBreatheCount;
   var lastCalmBoxEvent;
   bool hasStarted = false;
-  AppState _appState;
-  bool isDark;
+  late AppState _appState;
+  late bool isDark;
   bool isCancel = false;
 
   @override
@@ -97,7 +97,9 @@ class _TraditionalCalmBoxState extends State<TraditionalCalmBox>
             height: height * 0.47,
             child: Stack(
               children: [
-                GradientBackground(),
+                GradientBackground(
+                  colors: [],
+                ),
                 Positioned(
                   top: height * 0.24,
                   child: DividerLine(
@@ -210,7 +212,7 @@ class _TraditionalCalmBoxState extends State<TraditionalCalmBox>
   }
 
   vibrate() async {
-    if (await Vibration.hasVibrator()) {
+    if (await Vibration.hasVibrator() ?? false) {
       Vibration.vibrate(duration: 70);
     }
   }

@@ -13,10 +13,10 @@ class CongratsScreen extends StatefulWidget {
 }
 
 class _CongratsScreenState extends State<CongratsScreen> {
-  ConfettiController _controller;
-  AppState _appState;
-  bool isDark;
-  int totalCalmlyCount;
+  late ConfettiController _controller;
+  late AppState _appState;
+  late bool isDark;
+  late int totalCalmlyCount;
   @override
   void initState() {
     super.initState();

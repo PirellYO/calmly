@@ -5,17 +5,17 @@ import 'package:calmly/src/constants/color_constants.dart';
 
 class ThemeConfig {
   static ThemeData createTheme({
-    Brightness brightness,
-    Color background,
-    Color primaryText,
-    Color secondaryText,
-    Color accentColor,
-    Color divider,
-    Color buttonBackground,
-    Color buttonText,
-    Color cardBackground,
-    Color disabled,
-    Color error,
+    Brightness? brightness,
+    Color? background,
+    Color? primaryText,
+    Color? secondaryText,
+    Color? accentColor,
+    Color? divider,
+    Color? buttonBackground,
+    Color? buttonText,
+    Color? cardBackground,
+    Color? disabled,
+    Color? error,
   }) {
     final baseTextTheme = brightness == Brightness.dark
         ? Typography.blackMountainView
@@ -23,7 +23,7 @@ class ThemeConfig {
 
     return ThemeData(
       brightness: brightness,
-      buttonColor: buttonBackground,
+      // buttonColor: buttonBackground,
       canvasColor: background,
       cardColor: background,
       dividerColor: divider,
@@ -39,23 +39,23 @@ class ThemeConfig {
       ),
       backgroundColor: background,
       primaryColor: accentColor,
-      accentColor: accentColor,
-      textSelectionColor: accentColor,
-      textSelectionHandleColor: accentColor,
-      cursorColor: accentColor,
-      toggleableActiveColor: accentColor,
+      hintColor: accentColor,
       appBarTheme: AppBarTheme(
         brightness: brightness,
         color: cardBackground,
-        textTheme: TextTheme(
-          bodyText1: baseTextTheme.bodyText1.copyWith(
+        iconTheme: IconThemeData(
+          color: secondaryText,
+        ), toolbarTextStyle: TextTheme(
+          bodyText1: baseTextTheme.bodyText1?.copyWith(
             color: secondaryText,
             fontSize: 18,
           ),
-        ),
-        iconTheme: IconThemeData(
-          color: secondaryText,
-        ),
+        ).bodyText2, titleTextStyle: TextTheme(
+          bodyText1: baseTextTheme.bodyText1?.copyWith(
+            color: secondaryText,
+            fontSize: 18,
+          ),
+        ).headline6,
       ),
       iconTheme: IconThemeData(
         color: secondaryText,
@@ -65,15 +65,15 @@ class ThemeConfig {
       buttonTheme: ButtonThemeData(
         textTheme: ButtonTextTheme.primary,
         colorScheme: ColorScheme(
-          brightness: brightness,
-          primary: accentColor,
-          primaryVariant: accentColor,
+          brightness: brightness!,
+          primary: accentColor!,
+          // primaryVariant: accentColor,
           secondary: accentColor,
-          secondaryVariant: accentColor,
-          surface: background,
+          // secondaryVariant: accentColor,
+          surface: background!,
           background: background,
-          error: error,
-          onPrimary: buttonText,
+          error: error!,
+          onPrimary: buttonText!,
           onSecondary: buttonText,
           onSurface: buttonText,
           onBackground: buttonText,
@@ -91,7 +91,7 @@ class ThemeConfig {
           fontFamily: '',
           fontWeight: FontWeight.w600,
           fontSize: 16.0,
-          color: primaryText.withOpacity(0.5),
+          color: primaryText?.withOpacity(0.5),
         ),
         hintStyle: TextStyle(
           color: secondaryText,
@@ -101,71 +101,94 @@ class ThemeConfig {
       ),
       fontFamily: '',
       textTheme: TextTheme(
-        headline1: baseTextTheme.headline1.copyWith(
+        headline1: baseTextTheme.headline1?.copyWith(
           color: primaryText,
           fontSize: 34.0,
           fontWeight: FontWeight.bold,
         ),
-        headline2: baseTextTheme.headline2.copyWith(
+        headline2: baseTextTheme.headline2?.copyWith(
           color: primaryText,
           fontSize: 22,
           fontWeight: FontWeight.bold,
         ),
-        headline3: baseTextTheme.headline3.copyWith(
+        headline3: baseTextTheme.headline3?.copyWith(
           color: secondaryText,
           fontSize: 20,
           fontWeight: FontWeight.w600,
         ),
-        headline4: baseTextTheme.headline4.copyWith(
+        headline4: baseTextTheme.headline4?.copyWith(
           color: primaryText,
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
-        headline5: baseTextTheme.headline5.copyWith(
+        headline5: baseTextTheme.headline5?.copyWith(
           color: primaryText,
           fontSize: 16,
           fontWeight: FontWeight.w700,
         ),
-        headline6: baseTextTheme.headline6.copyWith(
+        headline6: baseTextTheme.headline6?.copyWith(
           color: primaryText,
           fontSize: 14,
           fontWeight: FontWeight.w700,
         ),
-        bodyText1: baseTextTheme.bodyText1.copyWith(
+        bodyText1: baseTextTheme.bodyText1?.copyWith(
           color: secondaryText,
           fontSize: 15,
         ),
-        bodyText2: baseTextTheme.bodyText2.copyWith(
+        bodyText2: baseTextTheme.bodyText2?.copyWith(
           color: primaryText,
           fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
-        button: baseTextTheme.button.copyWith(
+        button: baseTextTheme.button?.copyWith(
           color: primaryText,
           fontSize: 12.0,
           fontWeight: FontWeight.w700,
         ),
-        caption: baseTextTheme.caption.copyWith(
+        caption: baseTextTheme.caption?.copyWith(
           color: primaryText,
           fontSize: 11.0,
           fontWeight: FontWeight.w300,
         ),
-        overline: baseTextTheme.overline.copyWith(
+        overline: baseTextTheme.overline?.copyWith(
           color: secondaryText,
           fontSize: 11.0,
           fontWeight: FontWeight.w500,
         ),
-        subtitle1: baseTextTheme.subtitle1.copyWith(
+        subtitle1: baseTextTheme.subtitle1?.copyWith(
           color: primaryText,
           fontSize: 16.0,
           fontWeight: FontWeight.w700,
         ),
-        subtitle2: baseTextTheme.subtitle2.copyWith(
+        subtitle2: baseTextTheme.subtitle2?.copyWith(
           color: secondaryText,
           fontSize: 11.0,
           fontWeight: FontWeight.w500,
         ),
-      ),
+      ), textSelectionTheme: TextSelectionThemeData(cursorColor: accentColor, selectionColor: accentColor, selectionHandleColor: accentColor,), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return accentColor; }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return accentColor; }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return accentColor; }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return accentColor; }
+ return null;
+ }),
+ ),
     );
   }
 

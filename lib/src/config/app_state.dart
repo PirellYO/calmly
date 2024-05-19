@@ -4,9 +4,9 @@ import 'package:calmly/src/utils/local_db.dart';
 
 class AppState extends ChangeNotifier {
   bool _isModernBox = true;
-  bool _isVibrateOn;
-  ThemeSetting _themeSetting;
-  LocalDB _localDB;
+  late bool _isVibrateOn;
+  late ThemeSetting _themeSetting;
+  late LocalDB _localDB;
 
   AppState() {
     _localDB = LocalDB();
